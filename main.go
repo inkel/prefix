@@ -21,7 +21,7 @@ func main() {
 
 	exe := os.Args[1]
 	args := os.Args[2:]
-	ps := strings.Join(append(os.Args[1:], "> "), " ")
+	ps := strings.Join(os.Args[1:], " ") + " "
 
 	rl, err := readline.New(ps)
 	if err != nil {
