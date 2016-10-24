@@ -36,6 +36,7 @@ func main() {
 			break
 		} else if err != nil {
 			fmt.Fprintln(os.Stderr, err)
+			continue
 		}
 
 		parts, _ := Parse(ln)
