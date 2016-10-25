@@ -13,6 +13,10 @@ import (
 	"unicode/utf8"
 )
 
+func perror(err error) {
+	fmt.Fprintf(os.Stderr, "\x1b[31m%v\x1b[0m\n", err)
+}
+
 func main() {
 	if len(os.Args) < 2 {
 		fmt.Fprintf(os.Stderr, "usage: %v command [arguments]\n", os.Args[0])
@@ -35,7 +39,7 @@ func main() {
 		if err == io.EOF {
 			break
 		} else if err != nil {
-			fmt.Fprintln(os.Stderr, err)
+			perror(err)
 			continue
 		}
 
@@ -46,7 +50,7 @@ func main() {
 		cmd.Stderr = os.Stderr
 
 		if err = cmd.Run(); err != nil {
-			fmt.Printf("%#v\n", err)
+			perror(err)
 		}
 	}
 }
