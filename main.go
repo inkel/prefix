@@ -27,6 +27,11 @@ func main() {
 	args := os.Args[2:]
 	ps := strings.Join(os.Args[1:], " ") + " "
 
+	if _, err := exec.LookPath(exe); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(3)
+	}
+
 	rl, err := readline.New(ps)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
