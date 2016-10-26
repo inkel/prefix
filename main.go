@@ -9,6 +9,7 @@ import (
 
 	"bufio"
 	"github.com/chzyer/readline"
+	"os/signal"
 	"unicode"
 	"unicode/utf8"
 )
@@ -37,6 +38,8 @@ func main() {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(2)
 	}
+
+	signal.Notify(make(chan os.Signal, 1), os.Interrupt)
 
 	for {
 		ln, err := rl.Readline()
