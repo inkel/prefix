@@ -39,3 +39,7 @@ git > ^D
 ## TODO
 
 **ERRYTHING**
+
+* Support single quotes
+* Support mixing double and single quotes
+* Hate people that mixes double and single quotes
