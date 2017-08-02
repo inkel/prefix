@@ -30,11 +30,3 @@ To git@github.com:inkel/prefix.git
 Branch master set up to track remote branch master from origin.
 git > ^D
 ```
-
-## TODO
-
-**ERRYTHING**
-
-* Support single quotes
-* Support mixing double and single quotes
-* Hate people that mixes double and single quotes
