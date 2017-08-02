@@ -59,7 +59,11 @@ func main() {
 			continue
 		}
 
-		parts, _ := sw.Parse(ln)
+		parts, err := sw.Parse(ln)
+		if err != nil {
+			perror(err)
+			continue
+		}
 
 		cmd := exec.Command(exe, append(args, parts...)...)
 		cmd.Stdout = os.Stdout
