@@ -12,11 +12,14 @@ import (
 	"unicode/utf8"
 
 	"github.com/chzyer/readline"
+	"github.com/mattn/go-colorable"
 	"github.com/mattn/go-shellwords"
 )
 
+var stderr = colorable.NewColorableStderr()
+
 func perror(err error) {
-	fmt.Fprintf(os.Stderr, "\x1b[31m%v\x1b[0m\n", err)
+	fmt.Fprintf(stderr, "\x1b[31m%v\x1b[0m\n", err)
 }
 
 func main() {
