@@ -42,6 +42,10 @@ func main() {
 
 	signal.Notify(make(chan os.Signal, 1), os.Interrupt)
 
+	sw := shellwords.NewParser()
+	sw.ParseBacktick = true
+	sw.ParseEnv = true
+
 	for {
 		ln, err := rl.Readline()
 
@@ -52,7 +56,7 @@ func main() {
 			continue
 		}
 
-		parts, _ := shellwords.Parse(ln)
+		parts, _ := sw.Parse(ln)
 
 		cmd := exec.Command(exe, append(args, parts...)...)
 		cmd.Stdout = os.Stdout
