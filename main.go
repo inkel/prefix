@@ -1,17 +1,18 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"os"
 	"os/exec"
-	"strings"
-
-	"bufio"
-	"github.com/chzyer/readline"
 	"os/signal"
+	"strings"
 	"unicode"
 	"unicode/utf8"
+
+	"github.com/chzyer/readline"
+	"github.com/mattn/go-shellwords"
 )
 
 func perror(err error) {
@@ -51,7 +52,7 @@ func main() {
 			continue
 		}
 
-		parts, _ := Parse(ln)
+		parts, _ := shellwords.Parse(ln)
 
 		cmd := exec.Command(exe, append(args, parts...)...)
 		cmd.Stdout = os.Stdout
@@ -102,16 +103,4 @@ func scanner(in string) *bufio.Scanner {
 	})
 
 	return s
-}
-
-func Parse(in string) ([]string, error) {
-	var parts []string
-
-	s := scanner(in)
-
-	for s.Scan() {
-		parts = append(parts, s.Text())
-	}
-
-	return parts, nil
 }
