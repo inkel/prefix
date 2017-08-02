@@ -14,11 +14,6 @@ A  main.go
 A  main_test.go
 ?? prefix
 git > commit -m "initial commit"
-
-You need a passphrase to unlock the secret key for
-user: "Leandro López (inkel) <inkel.ar@gmail.com>"
-4096-bit RSA key, ID 58ABC66B, created 2016-04-08
-
 [master (root-commit) 6727b37] initial commit
  2 files changed, 138 insertions(+)
  create mode 100644 main.go
