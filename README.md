@@ -1,10 +1,17 @@
 # Don't Repeat Yourself
-
 Prefix a command to avoid repetition.
 
+## Installation
 ```
-inkel@miralejos2 ~/dev/go/src/github.com/inkel/prefix $ go build .
-inkel@miralejos2 ~/dev/go/src/github.com/inkel/prefix $ ./prefix git
+go install -u github.com/inkel/prefix
+```
+
+Or download the latest [release](https://github.com/inkel/prefix/releases).
+
+## Usage
+
+```
+$ prefix git
 git > init
 Initialized empty Git repository in /home/inkel/dev/go/src/github.com/inkel/prefix/.git/
 git > add main.go main_test.go
@@ -30,3 +37,6 @@ To git@github.com:inkel/prefix.git
 Branch master set up to track remote branch master from origin.
 git > ^D
 ```
+
+## License
+See [LICENSE](LICENSE).
