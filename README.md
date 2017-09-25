@@ -3,7 +3,7 @@ Prefix a command to avoid repetition.
 
 ## Installation
 ```
-go install -u github.com/inkel/prefix
+go install github.com/inkel/prefix
 ```
 
 Or download the latest [release](https://github.com/inkel/prefix/releases).
