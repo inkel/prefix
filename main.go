@@ -9,15 +9,8 @@ import (
 	"strings"
 
 	"github.com/chzyer/readline"
-	"github.com/mattn/go-colorable"
 	"github.com/mattn/go-shellwords"
 )
-
-var stderr = colorable.NewColorableStderr()
-
-func perror(err error) {
-	fmt.Fprintf(stderr, "\x1b[31m%v\x1b[0m\n", err)
-}
 
 func main() {
 	if len(os.Args) < 2 {
@@ -52,13 +45,13 @@ func main() {
 		if err == io.EOF {
 			break
 		} else if err != nil {
-			perror(err)
+			fmt.Fprintln(os.Stderr, err)
 			continue
 		}
 
 		parts, err := sw.Parse(ln)
 		if err != nil {
-			perror(err)
+			fmt.Fprintln(os.Stderr, err)
 			continue
 		}
 
@@ -67,7 +60,7 @@ func main() {
 		cmd.Stderr = os.Stderr
 
 		if err = cmd.Run(); err != nil {
-			perror(err)
+			fmt.Fprintln(os.Stderr, err)
 		}
 	}
 }
