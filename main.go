@@ -1,15 +1,12 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"io"
 	"os"
 	"os/exec"
 	"os/signal"
 	"strings"
-	"unicode"
-	"unicode/utf8"
 
 	"github.com/chzyer/readline"
 	"github.com/mattn/go-colorable"
@@ -73,45 +70,4 @@ func main() {
 			perror(err)
 		}
 	}
-}
-
-func scanner(in string) *bufio.Scanner {
-	var quoted = false
-
-	s := bufio.NewScanner(strings.NewReader(in))
-
-	s.Split(func(data []byte, atEOF bool) (advance int, token []byte, err error) {
-		start := 0
-
-		// Skip leading spaces.
-		for width := 0; start < len(data); start += width {
-			var r rune
-			r, width = utf8.DecodeRune(data[start:])
-			if !unicode.IsSpace(r) {
-				break
-			}
-		}
-
-		for width, i := 0, start; i < len(data); i += width {
-			var r rune
-			r, width = utf8.DecodeRune(data[i:])
-			if unicode.IsSpace(r) && !quoted {
-				return i + width, data[start:i], nil
-			} else if r == '"' {
-				quoted = !quoted
-				if quoted {
-					return i + width, nil, nil
-				}
-				return i + width, data[start:i], nil
-			}
-		}
-
-		if atEOF && len(data) > start {
-			return len(data), data[start:], nil
-		}
-
-		return start, nil, nil
-	})
-
-	return s
 }
