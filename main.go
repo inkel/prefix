@@ -5,7 +5,6 @@ import (
 	"io"
 	"os"
 	"os/exec"
-	"os/signal"
 	"strings"
 
 	"github.com/chzyer/readline"
@@ -32,8 +31,6 @@ func main() {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(2)
 	}
-
-	signal.Notify(make(chan os.Signal, 1), os.Interrupt)
 
 	sw := shellwords.NewParser()
 	sw.ParseBacktick = true
